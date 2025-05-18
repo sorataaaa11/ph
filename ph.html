@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+   <style>
+    body{
+        background-color: limegreen;
+    }
+    .q{
+        position: absolute;
+        top: 0;
+        left:0;
+        right: 0;
+        height: 50vh;
+        background-color: aqua;
+        border: none;
+        font-size: 5vh;
+        color: black;
+    }
+    .b{
+        position: absolute;
+        top: 0;
+        left:0;
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        border: black;
+        font-size: 29px;
+        color: black;
+    }
+    .a{
+        position: absolute;
+        bottom:  0;
+        left:0;
+        right: 0;
+        height: 50vh;
+        background-color:green ;
+        border: none;
+        font-size: 5vh;
+        color: black;
+        opacity: 0;
+    }
+   </style>
+</head>
+<body>
+    <button id='q' class="q"></button>
+    <button id="a" class="a"></button>
+    <button id="b" class="b">back</button>
+    <script>
+       function shuffleQnA(questions, answers) {
+    if (questions.length !== answers.length) {
+        throw new Error("Questions and answers must be the same length.");
+    }
+
+    // Create an array of indices
+    const indices = questions.map((_, i) => i);
+
+    // Shuffle the indices
+    for (let i = indices.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+
+    // Apply the shuffled indices to questions and answers
+    const shuffledQuestions = indices.map(i => questions[i]);
+    const shuffledAnswers = indices.map(i => answers[i]);
+
+    return { shuffledQuestions, shuffledAnswers };
+}
+
+
+        n = 0
+        const q =['for pirp_plans cricular proplems ele filed>> the const is......', 'for the same plan circular proplems ele field>>> the const is...', 'the changing term in circular section pproplems ele_filed is ...', 'the changing term in circular full ring pproplems ele_filed is ...', 'electric potintial of non conducting sphere inside it is']
+
+
+        const a =['kq', ' 2 k lamda', 'sin(alpha/2)/R', 'x/(x2 +R2)^3/2', 'kq(3-x^2/R^2)/D']
+        const { shuffledQuestions, shuffledAnswers } = shuffleQnA(q, a);
+
+
+        document.getElementById('q').innerText = shuffledQuestions[n]
+        document.getElementById('a').innerText = shuffledAnswers[n]
+        document.getElementById('b').addEventListener("click",()=>{
+            n -= 1
+            document.getElementById('q').innerText = shuffledQuestions[n]
+        document.getElementById('a').innerText = shuffledAnswers[n]
+        document.getElementById('a').style.opacity = '0'
+        })
+        document.getElementById('q').addEventListener("click",()=>{
+            n += 1
+            document.getElementById('q').innerText = shuffledQuestions[n]
+        document.getElementById('a').innerText = shuffledAnswers[n]
+        document.getElementById('a').style.opacity = '0'
+        })
+        document.getElementById('a').addEventListener("click",()=>{
+            document.getElementById('a').style.opacity = '1'
+        })
+        
+    </script>
+</body>
+</html>
